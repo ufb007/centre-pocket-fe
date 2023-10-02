@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react"
 import { Login } from "./auth/Login";
 import axios from "axios";
+import { updateLoginActive } from "../features/auth/loginSlice";
+import { useDispatch } from "react-redux";
 
 export const Header = () => {
+    const dispatch = useDispatch();
     const [isLoggedIn, setLoggedIn] = useState(false);
-    const [onLoginCard, setOnLoginCard] = useState(false);
 
     const loginLinkClick = () => {
-        setOnLoginCard(true)
+        dispatch(updateLoginActive(true));
     }
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:5000/summary').then((response) => {
+        axios.get('https://jsonplaceholder.typicode.com/posts').then((response) => {
             console.log('Show response - ', response)
         })
     }, [])
 
     return (
         <>
-            <Login {...{loginCardDisplay: onLoginCard}} />
+            <Login />
             <header>
                 <div className="topBar bg-primary flex justify-center items-center z-1">
                     <div className="w-8/12">

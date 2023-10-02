@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import { Button } from "../Button";
+import { getLoginActiveState, updateLoginActive } from "../../features/auth/loginSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-export const Login = ({loginCardDisplay}:any) => {
+export const Login = () => {
+    const dispatch = useDispatch();
+    const loginActiveState = useSelector(getLoginActiveState);
     const [cardDisplay, setCardDisplay] = useState(false);
+
+    console.log('Get login active state - ', loginActiveState)
 
     const onFormSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -13,11 +19,11 @@ export const Login = ({loginCardDisplay}:any) => {
     }
 
     const closeCardLogin = () => {
-        setCardDisplay(false);
+        dispatch(updateLoginActive(false))
     }
 
     useEffect(() => {
-        setCardDisplay(loginCardDisplay)
+        setCardDisplay(loginActiveState)
         console.log('show this here')
     })
 
