@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Login } from "./auth/Login";
-import axios from "axios";
 import { updateLoginActive } from "../features/auth/loginSlice";
 import { useDispatch } from "react-redux";
 
@@ -11,12 +10,6 @@ export const Header = () => {
     const loginLinkClick = () => {
         dispatch(updateLoginActive(true));
     }
-
-    useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/posts').then((response) => {
-            console.log('Show response - ', response)
-        })
-    }, [])
 
     return (
         <>

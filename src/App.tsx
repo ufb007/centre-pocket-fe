@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Home } from './components/Home';
 import { Login } from './components/auth/Login';
 import './index.css';
+import { Players } from './views/players/Players';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/players' element={<Players />} />
       </Routes>
     </>
   );
