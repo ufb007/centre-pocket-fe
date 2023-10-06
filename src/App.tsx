@@ -9,10 +9,12 @@ function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/players' element={<Players />} />
-      </Routes>
+      <div className="body flex flex-1 h-[100vh] justify-center bg-gray-200">
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/players' element={<Players />} />
+        </Routes>
+      </div>
     </>
   );
 }

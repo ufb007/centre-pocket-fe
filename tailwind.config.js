@@ -8,10 +8,12 @@ module.exports = {
       colors: {
         'primary': '#20273f',
         'secondary': '#7c859a',
-        'primary-red': '#e81f3e'
+        'primary-red': '#e81f3e',
+        'primary-blue': '#38a1f3'
       },
       fontFamily: {
-        nunito: ['Nunito', 'Arial']
+        'nunito': ['Nunito', 'sans-serif'],
+        'roboto-condensed': ['Roboto Condensed', 'sans-serif']
       }
     },
   },

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Roboto+Condensed:wght@300&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,12 +12,8 @@ textarea:focus, input:focus{
     @apply outline-none;
 }
 
-header {
-    height: 130px;
-}
-
 header .topBar {
-    height: 40px;
+    @apply h-[40px];
 }
 
 header .topBar ul li {
@@ -54,8 +50,7 @@ header ul.menu li {
 }
 
 header ul.menu li div {
-    @apply absolute top-0 left-0 h-1 bg-secondary;
-    width: 0%;
+    @apply absolute top-0 left-0 h-1 bg-secondary w-[0%];
     opacity: 0;
     transition: .8s;
 }
@@ -65,8 +60,7 @@ header ul.menu li:hover {
 }
 
 header ul.menu li:hover > div {
-    width: 100%;
-    opacity: 1;
+    @apply w-[100%] opacity-100;
 }
 
 .formBox input {
