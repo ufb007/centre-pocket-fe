@@ -1,14 +1,27 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import axios from "../../libs/axios"
+import { Player } from "../../interfaces/Player";
 
 export const Players = () => {
+    const [players, setPlayers] = useState([]);
+
     useEffect(() => {
-        axios.get('players/a004cf75-0050-4b59-b884-249bf0f936e7').then((response) => {
-            console.log('Show response - ', response.data)
+        axios.get('players').then((response) => {
+            //console.log('Show response - ', response.data)
+            setPlayers(response.data)
         })
     }, [])
 
     return (
-        <div>This is the players page</div>
+        <div className="players">
+            {players.map(({ id, firstName, lastName, profile }: Player) => {
+                return (
+                    <div className="cardPlayer" key={id}>
+                        <div className="name">{firstName}</div>
+                    </div>
+                )
+            })}
+
+        </div>
     )
 }

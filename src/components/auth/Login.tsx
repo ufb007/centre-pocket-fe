@@ -8,7 +8,7 @@ export const Login = () => {
     const loginActiveState = useSelector(getLoginActiveState);
     const [cardDisplay, setCardDisplay] = useState(false);
 
-    console.log('Get login active state - ', loginActiveState)
+    //console.log('Get login active state - ', loginActiveState)
 
     const onFormSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -24,7 +24,7 @@ export const Login = () => {
 
     useEffect(() => {
         setCardDisplay(loginActiveState)
-        console.log('show this here')
+        console.log('LOGIN PAGE')
     })
 
     return (

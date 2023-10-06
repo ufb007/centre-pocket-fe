@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Login } from "./auth/Login";
 import { updateLoginActive } from "../features/auth/loginSlice";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,10 @@ export const Header = () => {
     const loginLinkClick = () => {
         dispatch(updateLoginActive(true));
     }
+    
+    useEffect(() => {
+        console.log('HEADER SECTION')
+    }, [])
 
     return (
         <>
