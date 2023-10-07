@@ -2,10 +2,12 @@ import { useEffect, useState } from "react"
 import { Login } from "./auth/Login";
 import { updateLoginActive } from "../features/auth/loginSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
     const dispatch = useDispatch();
-    const [isLoggedIn, setLoggedIn] = useState(false);
+    const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
+    const navigate = useNavigate()
 
     const loginLinkClick = () => {
         dispatch(updateLoginActive(true));
@@ -43,10 +45,10 @@ export const Header = () => {
                             Logo Goes here
                         </div>
                         <ul className="menu">
-                            <li>Tournaments<div></div></li>
-                            <li>Players<div></div></li>
-                            <li>Fixtures<div></div></li>
-                            <li>Contact<div></div></li>
+                            <li onClick={() => navigate("/tournaments")}>Tournaments<div></div></li>
+                            <li onClick={() => navigate("/players")}>Players<div></div></li>
+                            <li onClick={() => navigate("/fixtures")}>Fixtures<div></div></li>
+                            <li onClick={() => navigate("/contact")}>Contact<div></div></li>
                         </ul>
                     </div>
                 </div>
