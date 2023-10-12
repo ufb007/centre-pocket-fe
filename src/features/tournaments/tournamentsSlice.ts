@@ -15,9 +15,9 @@ interface InterfaceTournamnetsState {
     error: string | undefined | null
 }
 
-export const fetchTournaments = createAsyncThunk('/tournaments', async() => {
+export const fetchTournaments = createAsyncThunk('/tournaments', async(status: string) => {
     try {
-        const response = await axios.get('/tournaments')
+        const response = await axios.get(`/tournaments/${status}`)
         return [...response.data]
     } catch (error: any) {
         return error.message

@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="body flex flex-1 justify-center bg-gray-200">
+      <div className="body flex justify-center bg-gray-200">
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/tournaments' element={<Tournaments />}>
