@@ -22,7 +22,7 @@ export const Header = () => {
             <Login />
             <header>
                 <div className="topBar bg-primary flex justify-center items-center z-1">
-                    <div className="w-8/12">
+                    <div className="w-8/12 font-thin">
                         {!isLoggedIn ?
                             <ul className="text-secondary flex flex-row justify-end relative overflow-visible">
                                 <li className="relative over overflow-visible">
@@ -44,7 +44,7 @@ export const Header = () => {
                         <div className="logo">
                             Logo Goes here
                         </div>
-                        <ul className="menu">
+                        <ul className="menu font-thin">
                             <li onClick={() => navigate("/tournaments")}>Tournaments<div></div></li>
                             <li onClick={() => navigate("/players")}>Players<div></div></li>
                             <li onClick={() => navigate("/fixtures")}>Fixtures<div></div></li>

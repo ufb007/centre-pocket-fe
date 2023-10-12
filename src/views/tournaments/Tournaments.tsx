@@ -21,15 +21,24 @@ export const Tournaments = () => {
 
     return (
         <div className="flex flex-col w-[50%]">
+            <div className="flex flex-row justify-center">
+                <div className="mini-menu flex flex-wrap justify-center py-3 px-5 bg-secondary text-white w-[300px] rounded-full rounded-t-none">
+                    <ul className="flex flex-row gap-3">
+                        <li>Upcoming</li>
+                        <li>Active</li>
+                        <li>Finished</li>
+                    </ul>
+                </div>
+            </div>
             <div className="search mt-5 flex flex-row items-center">
                 <BsSearch className="w-5 h-5 mr-3" />
-                <input type="text" placeholder="SEARCH TOURNAMENTS" name="search_players" className="w-full rounded-3xl h-8 px-4 py-5 bg-gray-50 text-gray-500 shadow-inner shadow-gray-300"  />
+                <input type="text" placeholder="SEARCH TOURNAMENTS" name="search_players" className="font-thin w-full rounded-3xl h-8 px-4 py-5 bg-gray-50 text-gray-500 shadow-inner shadow-gray-300"  />
             </div>
             <div className="tournaments flex flex-row justify-center items-start pt-8">
                 {tournaments.map(({ uuid, name, description, cover_image, max_players, game_type, race_to, status, tournament_players, type }: TournamentInterface) => {
                     return (
                         <div className="cardTournament w-full">
-                            <div className="head py-4 bg-primary-red text-white text-center text-lg uppercase">{ name }</div>
+                            <div className="head py-4 bg-primary-red text-white text-center text-lg uppercase font-thin">{ name }</div>
                         </div>
                     )
                 })}
