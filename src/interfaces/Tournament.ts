@@ -1,3 +1,5 @@
+import { Player } from "./Player";
+
 export interface TournamentInterface {
     id: number;
     uuid: string;
@@ -16,5 +18,6 @@ export interface TournamentInterface {
         playing: 'pending' | 'yes' | 'no';
         paid: 0 | 1;
         createdAt: Date;
+        player: Player
     }[]
 }
