@@ -31,11 +31,13 @@ export const Tournaments = () => {
     return (
         <div className="flex flex-col w-[50%]">
             <div className="flex flex-row justify-center">
-                <div className="mini-menu flex flex-wrap justify-center py-3 px-5 bg-secondary text-white w-[300px] rounded-full rounded-t-none">
-                    <ul className="flex flex-row gap-3">
-                        <li>Upcoming</li>
-                        <li>Active</li>
-                        <li>Finished</li>
+                <div className="mini-menu flex flex-wrap justify-center py-3 px-10 bg-secondary text-white rounded-full rounded-t-none">
+                    <ul className="flex flex-row gap-3 text-sm">
+                        <li className="text-primary-yellow cursor-pointer">Upcoming</li>
+                        <li>::</li>
+                        <li className="cursor-pointer hover:text-primary-yellow duration-500">Active</li>
+                        <li>::</li>
+                        <li className="cursor-pointer hover:text-primary-yellow duration-500">Finished</li>
                     </ul>
                 </div>
             </div>

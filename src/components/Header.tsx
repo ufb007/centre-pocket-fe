@@ -45,7 +45,7 @@ export const Header = () => {
                             Logo Goes here
                         </div>
                         <ul className="menu font-thin">
-                            <li onClick={() => navigate("/tournaments")}>Tournaments<div></div></li>
+                            <li onClick={() => navigate("/tournaments/upcoming")}>Tournaments<div></div></li>
                             <li onClick={() => navigate("/players")}>Players<div></div></li>
                             <li onClick={() => navigate("/fixtures")}>Fixtures<div></div></li>
                             <li onClick={() => navigate("/contact")}>Contact<div></div></li>

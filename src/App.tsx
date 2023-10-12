@@ -13,7 +13,9 @@ function App() {
       <div className="body flex flex-1 justify-center bg-gray-200">
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/tournaments' element={<Tournaments />} />
+          <Route path='/tournaments' element={<Tournaments />}>
+            <Route path='upcoming' element={<Tournaments />} />
+          </Route>
           <Route path='/players' element={<Players />} />
         </Routes>
       </div>
