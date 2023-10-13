@@ -1,33 +1,26 @@
 import { ThunkDispatch } from "@reduxjs/toolkit"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchTournaments, getAllTournaments, getTournamentsError, getTournamentsStatus } from "../../features/tournaments/tournamentsSlice"
-import { useEffect, useState } from "react";
-import { BsSearch } from 'react-icons/bs';
+import { useEffect } from "react";
 import { TournamentInterface } from "../../interfaces/Tournament";
 import { Menu } from "../../components/tournaments/Menu";
 import { Search } from "../../components/Search";
 import { Upcoming } from "../../components/tournaments/Upcoming";
+import { useParams, useLocation } from "react-router-dom";
 
-type TypeCountDown = {
-    count: number,
-    name: string
-}
-
-export const Tournaments = () => {
+export const Tournaments = ({ status }: any) => {
     const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
     const tournaments = useSelector(getAllTournaments);
     const tournamentsStatus = useSelector(getTournamentsStatus);
     const tournamentsError = useSelector(getTournamentsError);
-    const [countDown, setCountDown] = useState<TypeCountDown[]>([
-        { count: 0, name: 'Days'},
-        { count: 0, name: 'Hours'},
-        { count: 0, name: 'Minutes'},
-        { count: 0, name: 'Seconds'}
-    ])
+    const params = useParams();
+    const location = useLocation();
+
+    console.log(location.pathname.split('/'))
 
     useEffect(()=> {
         if (tournamentsStatus === 'idle') {
-            dispatch(fetchTournaments('upcoming'))
+            dispatch(fetchTournaments(status))
         }
     }, [tournamentsStatus, dispatch])
 

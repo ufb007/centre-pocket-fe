@@ -16,6 +16,7 @@ interface InterfaceTournamnetsState {
 }
 
 export const fetchTournaments = createAsyncThunk('/tournaments', async(status: string) => {
+    console.log('show status - ', status)
     try {
         const response = await axios.get(`/tournaments/${status}`)
         return [...response.data]
