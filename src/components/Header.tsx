@@ -3,6 +3,7 @@ import { Login } from "./auth/Login";
 import { updateLoginActive } from "../features/auth/loginSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { CiMenuBurger } from "react-icons/ci";
 
 export const Header = () => {
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export const Header = () => {
         <>
             <Login />
             <header>
-                <div className="topBar bg-primary flex justify-center items-center z-1">
+                <div className="topBar bg-primary md:flex justify-center items-center z-1 hidden">
                     <div className="w-8/12 font-thin">
                         {!isLoggedIn ?
                             <ul className="text-secondary flex flex-row justify-end relative overflow-visible">
@@ -39,17 +40,22 @@ export const Header = () => {
                         }
                     </div>
                 </div>
-                <div className="bottomBar bg-white border-b border-gray-300 flex justify-center z-0">
-                    <div className="flex flex-row justify-between items-center w-8/12">
+                <div className="bottomBar bg-white border-b border-gray-300 flex sm:justify-center z-0">
+                    <div className="flex flex-row justify-between items-center w-full ml-5 md:w-8/12 md:m0">
                         <div className="logo">
                             Logo Goes here
                         </div>
-                        <ul className="menu font-thin">
-                            <li onClick={() => navigate("/tournaments/upcoming")}>Tournaments<div></div></li>
-                            <li onClick={() => navigate("/players")}>Players<div></div></li>
-                            <li onClick={() => navigate("/fixtures")}>Fixtures<div></div></li>
-                            <li onClick={() => navigate("/contact")}>Contact<div></div></li>
-                        </ul>
+                        <div className="hidden md:block">
+                            <ul className="menu font-thin">
+                                <li onClick={() => navigate("/tournaments/upcoming")}>Tournaments<div></div></li>
+                                <li onClick={() => navigate("/players")}>Players<div></div></li>
+                                <li onClick={() => navigate("/fixtures")}>Fixtures<div></div></li>
+                                <li onClick={() => navigate("/contact")}>Contact<div></div></li>
+                            </ul>
+                        </div>
+                        <div className="burger md:hidden py-5 pr-5">
+                            <CiMenuBurger className="text-4xl"></CiMenuBurger>
+                        </div>
                     </div>
                 </div>
             </header>
