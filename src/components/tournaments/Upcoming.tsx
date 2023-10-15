@@ -33,14 +33,6 @@ export const Upcoming = () => {
             {tournaments.map((content: TournamentInterface) => {
                 return (
                     <TournamentCard {...content}>
-                        <div className="flex flex-row">
-                            <div className="imageHead w-[40%]">
-                                <img src={content.cover_image} alt="" />
-                            </div>
-                            <div className="p-4 font-thin text-gray-600">
-                                sfdfsf
-                            </div>
-                        </div>
                         <div className="countdown w-full border-t-[1px] border-gray-200" key={content.id}>
                             <ul className="flex flex-row text-center text-gray-400 uppercase font-thin font-roboto-condensed">
                                 {countDown.map(({ key, count, name }: TypeCountDown) => {
