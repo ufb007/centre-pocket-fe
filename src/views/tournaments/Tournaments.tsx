@@ -1,12 +1,14 @@
 import { ThunkDispatch } from "@reduxjs/toolkit"
 import { useDispatch, useSelector } from "react-redux"
-import { getAllTournaments, getTournamentsError, getTournamentsStatus } from "../../features/tournaments/tournamentsSlice"
+import { fetchTournaments, getAllTournaments, getTournamentsError, getTournamentsStatus } from "../../features/tournaments/tournamentsSlice"
 import { Menu } from "../../components/tournaments/Menu";
 import { Search } from "../../components/Search";
 import { Upcoming } from "../../components/tournaments/Upcoming";
-import { useMatch } from "react-router-dom";
-import { ReactElement } from "react";
+import { useLocation, useMatch } from "react-router-dom";
+import { ReactElement, useEffect } from "react";
 import { Active } from "../../components/tournaments/Active";
+import { TournamentContext } from "../../components/context/TournamentContext";
+import { TournamentInterface } from "../../interfaces/Tournament";
 
 export const Tournaments = () => {
     const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
@@ -14,6 +16,7 @@ export const Tournaments = () => {
     const tournamentsStatus = useSelector(getTournamentsStatus);
     const tournamentsError = useSelector(getTournamentsError);
     const match = useMatch('/tournaments/:status');
+    const location = useLocation();
     let status = match?.params.status! as string;
     let component: ReactElement = <Upcoming />
 
@@ -28,12 +31,22 @@ export const Tournaments = () => {
             break;
     }
 
+    useEffect(()=> {
+        dispatch(fetchTournaments(status))
+    }, [location])
+
     return (
         <div className="flex flex-col sm:w-[75%] md:w-[50%] w-full">
             <Menu status={status} />
             <Search />
             <div className="tournaments flex flex-row justify-center items-start pt-8 mx-3 sm:m-0">
-                { component }
+                {tournaments.map((content: TournamentInterface) => {
+                    return (
+                        <TournamentContext.Provider value={content} key={content.id}>
+                            { component }
+                        </TournamentContext.Provider>
+                    )
+                })}
             </div>
         </div>
     )

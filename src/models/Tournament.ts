@@ -29,4 +29,6 @@ export class TournamentModel {
     getTournamentType(type: string): string {
         return this.tournamentType.find((element) => element.key === type)!.value;
     }
+
+    
 }
