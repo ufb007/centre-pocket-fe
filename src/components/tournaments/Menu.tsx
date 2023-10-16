@@ -25,7 +25,7 @@ export const Menu = (status: StatusInterface) => {
                 <ul className="flex flex-row text-sm">
                     {menu.map(({ key, name, link }: TypeMenu) => {
                         return (
-                            <div className="flex flex-row items-center" key={key}>
+                            <div className="menu-text flex flex-row items-center" key={key}>
                                 <li className={`cursor-pointer hover:text-primary-yellow duration-500 ${status.status === link ? 'text-primary-yellow' : ''}`} onClick={()=> navigate(link)}>{ name }</li>
                                 <li className="mx-3">::</li>
                             </div>

@@ -16,12 +16,13 @@ export const Button: React.FC<ButtonInterface> = ({ title, ...props }) => {
                 text-white 
                 py-1 pl-10 
                 shadow-md 
-                rounded-md 
+                rounded-full 
                 hover:bg-primary-yellow duration-500 hover:text-gray-600 
+                active:shadow-inner
                 flex flex-row items-center"
             {...props}>
             {title}
-            <BiSolidLogInCircle className="ml-6 text-xl mr-2" />
+            <BiSolidLogInCircle className="ml-6 text-xl mr-1" />
         </button>
     )
 }

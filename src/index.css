@@ -63,6 +63,10 @@ header ul.menu li:hover > div {
     @apply w-[100%] opacity-100;
 }
 
+.mini-menu ul div:last-child li:last-child {
+    @apply hidden;
+}
+
 .formBox input {
     @apply border-b-[1px] 
            py-1 

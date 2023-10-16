@@ -39,7 +39,7 @@ export const Tournaments = () => {
         <div className="flex flex-col sm:w-[75%] md:w-[50%] w-full">
             <Menu status={status} />
             <Search />
-            <div className="tournaments flex flex-row justify-center items-start pt-8 mx-3 sm:m-0">
+            <div className="tournaments flex flex-col justify-center items-start pt-8 mx-3 sm:m-0">
                 {tournaments.map((content: TournamentInterface) => {
                     return (
                         <TournamentContext.Provider value={content} key={content.id}>

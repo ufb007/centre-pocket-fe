@@ -16,6 +16,7 @@ function App() {
           <Route path='/tournaments' element={<Tournaments />}>
             <Route path='upcoming' element={<Tournaments />} />
             <Route path='active' element={<Tournaments />} />
+            <Route path='finished' element={<Tournaments />} />
           </Route>
           <Route path='/players' element={<Players />} />
         </Routes>

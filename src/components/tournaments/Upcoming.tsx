@@ -23,6 +23,14 @@ export const Upcoming = () => {
 
     return (
         <TournamentCard {...tournamentContext!}>
+            <div className="players py-2 px-5 font-thin border-t text-gray-600">
+                <h2 className="font-normal uppercase pb-3">Players Joined</h2>
+                { tournamentContext!.tournament_players.length === 0 &&
+                    <p>There are currently no players joined</p>
+                }
+
+                <p>This should show regardless</p>
+            </div>
             <div className="countdown w-full border-t-[1px] border-gray-200" key={tournamentContext!.id}>
                 <ul className="flex flex-row text-center text-gray-400 uppercase font-thin font-roboto-condensed">
                     {countDown.map(({ key, count, name }: TypeCountDown) => {

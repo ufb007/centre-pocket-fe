@@ -29,7 +29,7 @@ export const TournamentCard = ({children, id, uuid, name, cover_image, descripti
                     </div>
 
                     <div className="absolute bottom-2 right-2">
-                        <Button title="Join" onClick={()=> { console.log('clicked button') }} />
+                        <Button title="Join" onClick={()=> { console.log('clicked button - ', uuid) }} />
                     </div>
                 </div>
                 {children}

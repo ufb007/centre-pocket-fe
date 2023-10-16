@@ -9,9 +9,6 @@ export const Active = () => {
     return (
         <TournamentCard {...tournamentContext!}>
             <div className="flex flex-row">
-                <div className="imageHead w-[40%]">
-                    <img src={tournamentContext!.cover_image} alt="" />
-                </div>
                 Active page
             </div>
         </TournamentCard>
