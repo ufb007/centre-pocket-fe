@@ -8,11 +8,13 @@ module.exports = {
       keyframes: {
         nameTag: {
           '0%': {
-            transform: 'translateY(-20px)',
+            transform: 'translate(-50%, 0px)',
+            left: '50%',
             opacity: 0
           },
           '100%': {
-            transform: 'translateY(0px)',
+            transform: 'translate(-50%, -20px)',
+            left: '50%',
             opacity: 1
           },
         }
@@ -29,7 +31,7 @@ module.exports = {
         'roboto-condensed': ['Roboto Condensed', 'sans-serif']
       },
       animation: {
-        'name-tag': 'nameTag .2s linear both'
+        'name-tag': 'nameTag .2s ease-out both'
       }
     },
   },

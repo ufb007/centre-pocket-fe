@@ -36,7 +36,7 @@ export const Upcoming = () => {
                         return (
                             <div className="relative w-16 h-16 cursor-pointer group">
                                 <img className="rounded-full" src={players.profile!.image} />
-                                <div className="opacity-0 group-hover:animate-name-tag absolute flex flex-row gap-1 left-[50%] bg-primary text-white py-1 px-2 rounded text-center text-sm translate-x-[-50%]"><p>{players.firstName}</p><p>{players.lastName}</p></div>
+                                <div className="font-thin opacity-0 translate-x-[-50%] top-0 group-hover:animate-name-tag absolute flex flex-row gap-1 bg-primary text-white py-1 px-3 rounded-full text-center text-[12px]"><p>{players.firstName}</p><p>{players.lastName}</p></div>
                             </div>
                         )
                     })}

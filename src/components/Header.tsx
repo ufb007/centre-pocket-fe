@@ -40,7 +40,7 @@ export const Header = () => {
                         }
                     </div>
                 </div>
-                <div className="bottomBar bg-white border-b border-gray-300 flex sm:justify-center z-0">
+                <div className="bottomBar bg-white flex sm:justify-center z-0">
                     <div className="flex flex-row justify-between items-center w-full ml-5 md:w-8/12 md:m0">
                         <div className="logo">
                             Logo Goes here
