@@ -4,6 +4,7 @@ import { TournamentCard } from "./TournamentCard";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { TournamentContext } from "../context/TournamentContext";
+import { Player } from "../../interfaces/Player";
 
 type TypeCountDown = {
     key: number,
@@ -24,12 +25,22 @@ export const Upcoming = () => {
     return (
         <TournamentCard {...tournamentContext!}>
             <div className="players py-2 px-5 font-thin border-t text-gray-600">
-                <h2 className="font-normal uppercase pb-3">Players Joined</h2>
+                <h2 className="font-normal uppercase pb-3">Players Joined - {tournamentContext!.tournament_players.length}/{tournamentContext!.max_players}</h2>
                 { tournamentContext!.tournament_players.length === 0 &&
                     <p>There are currently no players joined</p>
                 }
 
-                <p>This should show regardless</p>
+                <div className="playerWraper flex flex-row gap-3">
+                    {tournamentContext!.tournament_players.map(({ players }) => {
+                        console.log('Players - ', players)
+                        return (
+                            <div className="relative w-16 h-16 cursor-pointer group">
+                                <img className="rounded-full" src={players.profile!.image} />
+                                <div className="opacity-0 group-hover:animate-name-tag absolute flex flex-row gap-1 left-[50%] bg-primary text-white py-1 px-2 rounded text-center text-sm translate-x-[-50%]"><p>{players.firstName}</p><p>{players.lastName}</p></div>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
             <div className="countdown w-full border-t-[1px] border-gray-200" key={tournamentContext!.id}>
                 <ul className="flex flex-row text-center text-gray-400 uppercase font-thin font-roboto-condensed">

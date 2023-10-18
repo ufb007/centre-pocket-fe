@@ -18,6 +18,6 @@ export interface TournamentInterface {
         playing: 'pending' | 'yes' | 'no';
         paid: 0 | 1;
         createdAt: Date;
-        player: Player
+        players: Player
     }[]
 }
