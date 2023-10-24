@@ -9,7 +9,7 @@ export const TournamentPlayerProfiles = () => {
         <div className="playerWraper flex flex-row gap-3">
             {tournamentContext!.tournament_players.map(({ players }) => {
                 return (
-                    <div className="relative w-16 h-16 cursor-pointer group">
+                    <div key={players.id} className="relative w-16 h-16 cursor-pointer group">
                         <img className="rounded-full" src={players.profile!.image} />
                         <div className="
                             font-thin 
