@@ -1,5 +1,4 @@
 import { TournamentInterface } from "../../interfaces/Tournament"
-import Moment from "react-moment"
 import { TournamentModel } from "../../models/Tournament"
 import { Button } from "./Button"
 
@@ -10,10 +9,14 @@ type Props = {
 export const TournamentCard = ({children, id, uuid, name, cover_image, description, game_type, race_to, start_date, tournament_players, max_players, status, type }: TournamentInterface & Props) => {
     const tournamentModel = new TournamentModel()
 
+    const date = new Date(start_date);
+
+    const formattedDate = new Intl.DateTimeFormat('us-GB', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+
     return (
         <div className="cardTournament w-full shadow-md mb-10" key={id}>
-            <div className="head py-2 bg-primary-red text-white text-sm font-thin pl-5">
-                <span className="uppercase text-lg">{ name }:</span> <Moment date={start_date.toString()} />
+            <div className="head py-2 bg-primary-red text-white text-sm font-thin px-5 flex items-center justify-between">
+                <span className="uppercase text-lg">{ name }</span> <span>{ formattedDate }</span>
             </div>
             <div className="content bg-white border border-t-0 border-gray-200 relative">
                 <div className="flex flex-row relative">

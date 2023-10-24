@@ -9,6 +9,7 @@ import { ReactElement, useEffect } from "react";
 import { Active } from "../../components/tournaments/Active";
 import { TournamentContext } from "../../components/context/TournamentContext";
 import { TournamentInterface } from "../../interfaces/Tournament";
+import { Finished } from "../../components/tournaments/Finished";
 
 export const Tournaments = () => {
     const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
@@ -28,6 +29,7 @@ export const Tournaments = () => {
             component = <Active />
             break;
         case 'finished':
+            component = <Finished />
             break;
     }
 
