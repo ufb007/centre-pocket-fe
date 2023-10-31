@@ -5,6 +5,7 @@ import { Home } from './components/Home';
 import './index.css';
 import { Players } from './views/players/Players';
 import { Tournaments } from './views/tournaments/Tournaments';
+import { Tournament } from './views/tournaments/Tournament';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='active' element={<Tournaments />} />
             <Route path='finished' element={<Tournaments />} />
           </Route>
+          <Route path='/tournament/:uuid' element={<Tournament />} /> 
           <Route path='/players' element={<Players />} />
         </Routes>
       </div>

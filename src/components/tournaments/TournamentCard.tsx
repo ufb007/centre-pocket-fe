@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import { TournamentInterface } from "../../interfaces/Tournament"
 import { TournamentModel } from "../../models/Tournament"
 import { Button } from "./Button"
@@ -8,6 +9,7 @@ type Props = {
 
 export const TournamentCard = ({children, id, uuid, name, cover_image, description, game_type, race_to, start_date, tournament_players, max_players, status, type }: TournamentInterface & Props) => {
     const tournamentModel = new TournamentModel()
+    const navigate = useNavigate()
 
     const date = new Date(start_date);
 
@@ -32,7 +34,7 @@ export const TournamentCard = ({children, id, uuid, name, cover_image, descripti
                     </div>
 
                     <div className="absolute bottom-2 right-2">
-                        <Button title="Join" onClick={()=> { console.log('clicked button - ', uuid) }} />
+                        <Button title="Join" onClick={()=> { navigate(`/tournament/${uuid}`) }} />
                     </div>
                 </div>
                 {children}

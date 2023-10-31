@@ -13,12 +13,6 @@ export const Tournament = () => {
    const tournaments = useSelector(getAllTournaments);
    const tournamentsStatus = useSelector(getTournamentsStatus);
    const tournamentsError = useSelector(getTournamentsError);
-   const [countDown, setCountDown] = useState<TypeCountDown[]>([
-      { count: 0, name: 'Days'},
-      { count: 0, name: 'Hours'},
-      { count: 0, name: 'Minutes'},
-      { count: 0, name: 'Seconds'}
-  ])
 
    useEffect(()=> {
       if (tournamentsStatus === 'idle') {
@@ -28,6 +22,7 @@ export const Tournament = () => {
 
    return (
       <>
+         <p>This is the tournament page</p>
       </>
    )
 };

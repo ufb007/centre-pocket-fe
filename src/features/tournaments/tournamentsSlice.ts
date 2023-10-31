@@ -24,6 +24,15 @@ export const fetchTournaments = createAsyncThunk('/tournaments', async(status: s
     }
 })
 
+export const fetchTournament = createAsyncThunk('/tournaments/tournament/:uuid', async(uuid: string) => {
+    try {
+        const response = await axios.get(`/tournaments/tournament/${uuid}`)
+        return [...response.data]
+    } catch (error: any) {
+        return error.message
+    }
+})
+
 const tournamentsSlice = createSlice({
     name: 'tournaments',
     initialState: initialState as InterfaceTournamnetsState,
