@@ -4,6 +4,7 @@ export interface Player {
     firstName: string;
     lastName: string;
     alias?: string;
+    phone?: string;
     profile?: {
         image?: string;
         rank?: number;

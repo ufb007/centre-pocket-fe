@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react"
-import axios from "../../libs/axios"
 import { Player } from "../../interfaces/Player";
 import { BsSearch } from 'react-icons/bs';
+import { useQuery } from "@apollo/client";
+import { GET_ALL_PLAYERS } from "../../components/gql_queries/players.gql";
 
 export const Players = () => {
     const [players, setPlayers] = useState<Player[]>([]);
+    const { loading, data } = useQuery(GET_ALL_PLAYERS)
 
     useEffect(() => {
-        axios.get('players').then((response) => {
-            //console.log('Show response - ', response.data)
-            setPlayers(response.data)
-        })
-    }, [])
+        if (!loading) {
+            setPlayers(data.getAllPlayers)
+        }
+    }, [loading])
 
     return (
         <div className="flex flex-col w-[50%]">
@@ -20,7 +21,7 @@ export const Players = () => {
                 <input type="text" placeholder="SEARCH PLAYERS" name="search_players" className="font-thin w-full rounded-3xl h-8 px-4 py-5 bg-gray-50 text-gray-500 shadow-inner shadow-gray-300"  />
             </div>
             <div className="players flex flex-row justify-center items-start gap-2 pt-8">
-                {players.map(({ id, firstName, lastName, profile }: Player) => {
+                {players.map(({ id, uuid, firstName, lastName, profile }: Player) => {
                     return (
                         <div className="cardPlayer relative w-[400px] cursor-pointer" key={id}>
                             <div className="rank text-white py-2 w-12 text-center bg-primary-blue rounded rounded-t-none font-roboto-condensed text-2xl absolute right-3 top-[-10px]">{profile?.rank ?? 0}</div>
