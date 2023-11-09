@@ -2,11 +2,17 @@ import { useEffect, useState } from "react"
 import { Player } from "../../interfaces/Player";
 import { BsSearch } from 'react-icons/bs';
 import { useQuery } from "@apollo/client";
-import { GET_ALL_PLAYERS } from "../../components/gql_queries/players.gql";
+import { GET_ALL_PLAYERS, GET_PLAYER_BY_UUID } from "../../components/gql_queries/players.gql";
 
 export const Players = () => {
     const [players, setPlayers] = useState<Player[]>([]);
     const { loading, data } = useQuery(GET_ALL_PLAYERS)
+    const uuid = "d790c211-6b14-45a8-951c-bfd5028d86cc";
+    const getPlayer = useQuery(GET_PLAYER_BY_UUID, {
+        variables: { uuid }
+    })
+
+    console.log(getPlayer.data)
 
     useEffect(() => {
         if (!loading) {
