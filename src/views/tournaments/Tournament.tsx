@@ -10,16 +10,16 @@ export const Tournament = () => {
     const params = useParams()
     const uuid = params.uuid as string
 
-    console.log('LOCATION - ', location)
-    console.log('Params - ', typeof params.uuid)
+    //console.log('LOCATION - ', location)
+    //console.log('Params - ', typeof params.uuid)
 
     useEffect(() => {
         dispatch(fetchTournament(uuid))
     }, [location])
 
     return (
-        <>
+        <div>
             Tournament page
-        </>
+        </div>
     )
 }

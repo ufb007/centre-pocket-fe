@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Login } from "./auth/Login";
+import loginObservable from "./auth/LoginObservable";
 import { updateLoginActive } from "../features/auth/loginSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -14,9 +15,12 @@ export const Header = () => {
         dispatch(updateLoginActive(true));
     }
     
-    useEffect(() => {
-        console.log('HEADER SECTION')
-    }, [])
+    useEffect(() => {   
+        loginObservable.subscribe((loggedIn: any) => {
+            setLoggedIn(loggedIn);
+            console.log('Log in state has changed to ', loggedIn);
+        })
+    }, [loginObservable])
 
     return (
         <>

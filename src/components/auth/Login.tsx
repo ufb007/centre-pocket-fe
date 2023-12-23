@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import { Button } from "../Button";
 import { getLoginActiveState, updateLoginActive } from "../../features/auth/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
+import loginObservable from "./LoginObservable";
 
 export const Login = () => {
     const dispatch = useDispatch();
     const loginActiveState = useSelector(getLoginActiveState);
-    const [cardDisplay, setCardDisplay] = useState(false);
+    const [cardDisplay, setCardDisplay] = useState<boolean>(false);
 
     //console.log('Get login active state - ', loginActiveState)
 
     const onFormSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
+        loginObservable.notify(true);
     }
 
     const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +26,6 @@ export const Login = () => {
 
     useEffect(() => {
         setCardDisplay(loginActiveState)
-        console.log('LOGIN PAGE')
     })
 
     return (

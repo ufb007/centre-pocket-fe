@@ -3,13 +3,15 @@ import postsReducer from '../features/posts/postsSlice';
 import usersReducer from "../features/users/usersSlice";
 import loginReducer from "../features/auth/loginSlice";
 import tournamentsReducer from "../features/tournaments/tournamentsSlice";
+import graphqlReducer from "../features/graphql/graphqlSlice";
 
 const store = configureStore({
     reducer: {
         posts: postsReducer,
         users: usersReducer,
         login: loginReducer,
-        tournaments: tournamentsReducer
+        tournaments: tournamentsReducer,
+        graphql: graphqlReducer
     }
 })
 

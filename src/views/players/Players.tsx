@@ -12,7 +12,7 @@ export const Players = () => {
         variables: { uuid }
     })
 
-    console.log(getPlayer.data)
+    // console.log(getPlayer.data)
 
     useEffect(() => {
         if (!loading) {
