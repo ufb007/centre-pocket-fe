@@ -1,6 +1,5 @@
-import { ThunkDispatch } from "@reduxjs/toolkit"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchTournaments, getAllTournaments } from "../../features/tournaments/tournamentsSlice"
+import { fetchDataSuccess } from "../../features/tournaments/tournamentsSlice"
 import { Menu } from "../../components/tournaments/Menu";
 import { Search } from "../../components/Search";
 import { Upcoming } from "../../components/tournaments/Upcoming";
@@ -10,16 +9,24 @@ import { Active } from "../../components/tournaments/Active";
 import { TournamentContext } from "../../components/context/TournamentContext";
 import { TournamentInterface } from "../../interfaces/Tournament";
 import { Finished } from "../../components/tournaments/Finished";
+import { useQuery } from "@apollo/client";
+import { GET_ALL_TOURNAMENTS } from "../../components/gql_queries/players.gql";
+import { RootState } from "../../app/store";
 
 export const Tournaments = () => {
-    const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-    const tournaments = useSelector(getAllTournaments);
+    const dispatch = useDispatch();
+    const { tournaments, status, error } = useSelector((state: RootState) => state.tournaments);
     const match = useMatch('/tournaments/:status');
     const location = useLocation();
-    let status = match?.params.status! as string;
+
+    let match_status = match?.params.status! as 'upcoming' | 'active' | 'finished';
     let component: ReactElement = <Upcoming />
 
-    switch (status) {
+    const { loading, data } = useQuery(GET_ALL_TOURNAMENTS, {
+        variables: { status: match_status }
+    });
+
+    switch (match_status) {
         case 'upcoming':
             component = <Upcoming />
             break;
@@ -31,19 +38,34 @@ export const Tournaments = () => {
             break;
     }
 
+    const renderComponent = (status: string) => {
+        switch (status) {
+            case 'active':
+                return <Active />;
+                break;
+            case 'finished':
+                return <Finished />;
+                break;
+        }
+
+        return <Upcoming />;
+    }
+    
     useEffect(()=> {
-        dispatch(fetchTournaments(status))
-    }, [location])
+        if (!loading && tournaments[match_status].length === 0) {
+            dispatch(fetchDataSuccess({ data: data.tournaments, status: match_status}));
+        }
+    }, [loading, match_status]);
 
     return (
         <div className="flex flex-col sm:w-[75%] md:w-[50%] w-full">
-            <Menu status={status} />
+            <Menu status={match_status} />
             <Search />
             <div className="tournaments flex flex-col justify-center items-start pt-8 mx-3 sm:m-0">
-                {tournaments.map((content: TournamentInterface) => {
+                { tournaments[match_status].map((content: TournamentInterface) => {
                     return (
                         <TournamentContext.Provider value={content} key={content.id}>
-                            { component }
+                            { renderComponent(match_status) }
                         </TournamentContext.Provider>
                     )
                 })}

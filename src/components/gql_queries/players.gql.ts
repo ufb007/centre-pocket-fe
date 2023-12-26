@@ -34,7 +34,7 @@ export const GET_PLAYER_BY_UUID = gql`
     }`;
 
 export const GET_ALL_TOURNAMENTS = gql`
-    query Tournaments($status: String) {
+    query Tournaments($status: String!) {
         tournaments(status: $status) {
             id
             uuid
@@ -44,20 +44,23 @@ export const GET_ALL_TOURNAMENTS = gql`
             type
             max_players
             race_to
-            cover_image
             start_date
-            created_at
+            cover_image
             tournament_players {
+              players {
                 id
-                playing
-                paid
-                players {
+                uuid
+                firstName
+                lastName
+                email
+                profile {
                     id
-                    uuid
-                    firstName
-                    lastName
-                    alias
+                    rank
+                    image
+                    matches_played
+                    matches_won
                 }
+              }
             }
         }
     }`;

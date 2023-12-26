@@ -1,5 +1,4 @@
 import { useEffect } from "react"
-import { fetchTournament } from "../../features/tournaments/tournamentsSlice"
 import { useLocation, useParams } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { ThunkDispatch } from "@reduxjs/toolkit"
@@ -14,7 +13,7 @@ export const Tournament = () => {
     //console.log('Params - ', typeof params.uuid)
 
     useEffect(() => {
-        dispatch(fetchTournament(uuid))
+        //dispatch(fetchTournament(uuid))
     }, [location])
 
     return (

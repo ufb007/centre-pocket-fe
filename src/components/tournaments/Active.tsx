@@ -6,6 +6,8 @@ import { TournamentContext } from "../context/TournamentContext";
 export const Active = () => {
     const tournamentContext = useContext<TournamentInterface | undefined>(TournamentContext)
 
+    console.log('show this here please')
+
     return (
         <TournamentCard {...tournamentContext!}>
             <div className="flex flex-row">

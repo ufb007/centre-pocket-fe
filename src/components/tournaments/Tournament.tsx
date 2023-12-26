@@ -1,7 +1,7 @@
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTournaments, getAllTournaments, getTournamentsError, getTournamentsStatus } from "../../features/tournaments/tournamentsSlice";
+import { getAllTournaments, getTournamentsError, getTournamentsStatus } from "../../features/tournaments/tournamentsSlice";
 
 type TypeCountDown = {
    count: number,
@@ -16,7 +16,7 @@ export const Tournament = () => {
 
    useEffect(()=> {
       if (tournamentsStatus === 'idle') {
-         dispatch(fetchTournaments('upcoming'))
+         //dispatch(fetchTournaments('upcoming'))
       }
    }, [tournamentsStatus, dispatch])
 
