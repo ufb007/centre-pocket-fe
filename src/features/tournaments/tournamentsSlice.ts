@@ -1,60 +1,49 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "../../libs/axios"
 import { TournamentInterface } from "../../interfaces/Tournament"
 import { RootState } from "../../app/store"
 
 const initialState = {
-    tournaments: [],
+    tournaments: {
+        upcoming: [],
+        active: [],
+        finished: []
+    },
     status: 'idle',
     error: null
 }
 
-interface InterfaceTournamnetsState {
-    tournaments: TournamentInterface[],
+interface InterfaceTournamentsState {
+    tournaments: {
+        upcoming: TournamentInterface[],
+        active: TournamentInterface[],
+        finished: TournamentInterface[]
+    },
     status: 'idle' | 'loading' | 'succeeded' | 'failed',
     error: string | undefined | null
 }
 
-export const fetchTournaments = createAsyncThunk('/tournaments', async(status: string) => {
-    try {
-        const response = await axios.get(`/tournaments/${status}`)
-        return [...response.data]
-    } catch (error: any) {
-        return error.message
-    }
-})
-
-export const fetchTournament = createAsyncThunk('/tournaments/tournament/:uuid', async(uuid: string) => {
-    try {
-        const response = await axios.get(`/tournaments/tournament/${uuid}`)
-        return [...response.data]
-    } catch (error: any) {
-        return error.message
-    }
-})
-
 const tournamentsSlice = createSlice({
     name: 'tournaments',
-    initialState: initialState as InterfaceTournamnetsState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-        .addCase(fetchTournaments.pending, (state, action) => {
+    initialState: initialState as InterfaceTournamentsState,
+    reducers: {
+        fetchDataStart(state) {
             state.status = 'loading';
-        })
-        .addCase(fetchTournaments.fulfilled, (state, action) => {
+        },
+        fetchDataSuccess(state, action: PayloadAction<{ data:  TournamentInterface[], status: 'upcoming' | 'active' | 'finished'}>) {
             state.status = 'succeeded';
-            
-            state.tournaments = action.payload
-        })
-        .addCase(fetchTournaments.rejected, (state,action) => {
-            state.error = 'failed'
-        })
+
+            const { data, status } = action.payload;
+
+            state.tournaments[status] = data;
+        }
     }
 })
 
 export const getAllTournaments = (state: RootState) => state.tournaments.tournaments;
-export const getTournamentsStatus = (state: RootState) => state.tournaments.status
-export const getTournamentsError = (state: RootState) => state.tournaments.error
+export const getTournamentsStatus = (state: RootState) => state.tournaments.status;
+export const getTournamentsError = (state: RootState) => state.tournaments.error;
+
+export const { fetchDataStart, fetchDataSuccess } = tournamentsSlice.actions;
 
 export default tournamentsSlice.reducer;
