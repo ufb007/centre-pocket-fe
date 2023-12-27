@@ -1,0 +1,62 @@
+import React from 'react';
+import { render, waitFor } from '@testing-library/react';
+import { MockedProvider } from '@apollo/client/testing';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import { Tournaments } from './Tournaments';
+import { GET_ALL_TOURNAMENTS } from '../../components/gql_queries/players.gql';
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useMatch: jest.fn(),
+    useNavigate: jest.fn(),
+    useLocation: jest.fn(),
+}));
+
+const mockStore = configureStore([]);
+
+const mocks = [
+  {
+    request: {
+      query: GET_ALL_TOURNAMENTS,
+    },
+    result: {
+      data: {
+        tournaments: [
+            {
+                id: 1,
+                uuid: 'a780dded-a8e9-447d-820c-63fc06990606',
+                description: "This is the October open",
+            }
+        ]
+      },
+    },
+  },
+];
+
+test('renders data fetched from GraphQL', async () => {
+  const store = mockStore({
+    tournaments: {
+        tournaments: {
+            upcoming: [],
+            active: [],
+            finished: []
+        },
+        status: 'idle',
+        error: null
+    },
+  });
+
+  const { getByText,  } = render(
+    <Provider store={store}>
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <Tournaments />
+      </MockedProvider>
+    </Provider>
+  );
+
+  // Wait for the component to render with the mocked data
+  await waitFor(() => {
+    expect(getByText('This is the October open')).toBeInTheDocument();
+  });
+});
