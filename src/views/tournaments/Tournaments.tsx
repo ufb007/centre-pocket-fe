@@ -26,18 +26,6 @@ export const Tournaments = () => {
         variables: { status: match_status }
     });
 
-    switch (match_status) {
-        case 'upcoming':
-            component = <Upcoming />
-            break;
-        case 'active':
-            component = <Active />
-            break;
-        case 'finished':
-            component = <Finished />
-            break;
-    }
-
     const renderComponent = (status: string) => {
         switch (status) {
             case 'active':
