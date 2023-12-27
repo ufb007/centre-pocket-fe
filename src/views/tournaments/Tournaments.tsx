@@ -50,7 +50,7 @@ export const Tournaments = () => {
             <Menu status={match_status} />
             <Search />
             <div className="tournaments flex flex-col justify-center items-start pt-8 mx-3 sm:m-0">
-                { tournaments[match_status].map((content: TournamentInterface) => {
+                { tournaments[match_status]?.map((content: TournamentInterface) => {
                     return (
                         <TournamentContext.Provider value={content} key={content.id}>
                             { renderComponent(match_status) }

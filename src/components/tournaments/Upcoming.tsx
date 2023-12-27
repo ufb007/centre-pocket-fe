@@ -1,8 +1,6 @@
 import { useContext, useState } from "react"
 import { TournamentInterface } from "../../interfaces/Tournament";
 import { TournamentCard } from "./TournamentCard";
-import { useDispatch, useSelector } from "react-redux";
-import { ThunkDispatch } from "@reduxjs/toolkit";
 import { TournamentContext } from "../context/TournamentContext";
 import { TournamentPlayerProfiles } from "./TournamentPlayerProfiles";
 
@@ -13,7 +11,6 @@ type TypeCountDown = {
 }
 
 export const Upcoming = () => {
-    const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
     const tournamentContext = useContext<TournamentInterface | undefined>(TournamentContext)
     const [countDown, setCountDown] = useState<TypeCountDown[]>([
         { key: 1, count: 0, name: 'Days'},
