@@ -13,7 +13,7 @@ export const TournamentCard = ({children, id, uuid, name, cover_image, descripti
 
     const date = new Date(start_date);
 
-    const formattedDate = new Intl.DateTimeFormat('us-GB', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+    const formattedDate = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
 
     return (
         <div className="cardTournament w-full shadow-md mb-10" key={id}>
