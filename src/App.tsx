@@ -6,6 +6,7 @@ import './index.css';
 import { Players } from './views/players/Players';
 import { Tournaments } from './views/tournaments/Tournaments';
 import { Tournament } from './views/tournaments/Tournament';
+import { CreateNew } from './views/tournaments/CreateNew';
 import { ApolloProvider } from '@apollo/client';
 import client from './libs/graphql'
 
@@ -22,6 +23,7 @@ function App() {
               <Route path='active' element={<Tournaments />} />
               <Route path='finished' element={<Tournaments />} />
             </Route>
+            <Route path='/tournaments/create-new' element={<CreateNew />} />
             <Route path='/tournament/:uuid' element={<Tournament />} /> 
             <Route path='/players' element={<Players />} />
           </Routes>
