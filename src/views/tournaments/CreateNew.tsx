@@ -1,22 +1,23 @@
-import React, { ChangeEvent, useState } from "react"
+import React, { ChangeEvent, FormEvent, useState } from "react"
 import { TournamentModel } from "../../models/Tournament"
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.module.css';
+import { DatePicker } from "../../components/DatePicker";
+import { FormInterface } from "../../interfaces/CreateNewTournament";
+import { Button } from "../../components/tournaments/Button";
 
 interface GameTypeInterface {
     name: string
     value: string
 }
 
-interface FormInterface {
-    name: string
-    description: string
-    game_type: '9ball' | '8ball' | '10ball' | 'straight';
-    type: 'single' | 'double' | 'round_robin';
-    max_players: 8 | 16 | 32 | 64 | 128;
-    race_to: number;
-    cover_image: string;
-    start_date: string;
+const initialFormData: FormInterface = {
+    name: '',
+    description: '',
+    game_type: '9ball',
+    type: 'single',
+    max_players: 8,
+    race_to: 0,
+    cover_image: '',
+    start_date: '0000-00-00 00:00:00'
 }
 
 export const CreateNew: React.FC = () => {
@@ -34,16 +35,7 @@ export const CreateNew: React.FC = () => {
         { name: 'round_robin', value: tournament.getTournamentType('round_robin') }
     ]);
     const [maxPlayers, setMaxPlayers] = useState<number[]>([8, 16, 32, 64, 128]);
-    const [formData, setFormData] = useState<FormInterface>({
-        name: '',
-        description: '',
-        game_type: '9ball',
-        type: 'single',
-        max_players: 8,
-        race_to: 0,
-        cover_image: '',
-        start_date: ''
-    });
+    const [formData, setFormData] = useState<FormInterface>(initialFormData);
 
     const updateFormData = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -60,9 +52,10 @@ export const CreateNew: React.FC = () => {
         setFormData((prevData) => ({...prevData, [name]: value}));
     }
 
-    const updateStartDate = (date: any) => {
-        const formattedDate = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(date);
-        console.log('Show date - ', formattedDate)
+    const onFormSubmit = (e: FormEvent) => {
+        e.preventDefault();
+
+        console.log('Show form data - ', formData);
     }
 
     return (
@@ -81,9 +74,7 @@ export const CreateNew: React.FC = () => {
                     <label htmlFor="">Game Type:</label>
                     <select name="game_type" value={formData.game_type} onChange={updateFormDataSelect}>
                         {gameType.map(({ name, value }) => {
-                            return (
-                                <option key={name} value={name}>{ value }</option>
-                            );
+                            return (<option key={name} value={name}>{ value }</option>);
                         })}
                     </select>
                 </div>
@@ -91,9 +82,7 @@ export const CreateNew: React.FC = () => {
                     <label htmlFor="">Type:</label>
                     <select name="type" value={formData.type} onChange={updateFormDataSelect}>
                         {matchType.map(({ name, value }) => {
-                            return (
-                                <option key={name} value={name}>{ value }</option>
-                            );
+                            return (<option key={name} value={name}>{ value }</option>);
                         })}
                     </select>
                 </div>
@@ -101,9 +90,7 @@ export const CreateNew: React.FC = () => {
                     <label htmlFor="">Maximum players:</label>
                     <select name="max_players" value={formData.max_players} onChange={updateFormDataSelect}>
                         {maxPlayers.map(num => {
-                            return (
-                                <option key={num} value={num}>{ num }</option>
-                            );
+                            return (<option key={num} value={num}>{ num }</option>);
                         })}
                     </select>
                 </div>
@@ -117,8 +104,10 @@ export const CreateNew: React.FC = () => {
                 </div>
                 <div>
                     <label htmlFor="">Start date:</label>
-                    <DatePicker showTimeSelect onChange={(date) => updateStartDate(date) } />
+                    <DatePicker setFormData={setFormData} />
                 </div>
+
+                <Button title="Create Tournament" onClick={onFormSubmit} />
             </form>
         </div>
     )
