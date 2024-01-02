@@ -15,14 +15,14 @@ export const DatePicker: React.FC<{ setFormData: React.Dispatch<React.SetStateAc
         const getDate = dateFormat(date, 'date');
 
         setStartDate({date: getDate, time: startDate.time });
-        setFormData((prevData) => ({ ...prevData, start_date: `${getDate} ${startDate.time}` }));
+        setFormData(prevData => ({ ...prevData, start_date: `${getDate} ${startDate.time}` }));
     }
 
     const updateStartSelectTime = (date: any) => {
         const getTime = dateFormat(date);
 
         setStartDate({date: startDate.date, time: getTime });
-        setFormData((prevData) => ({ ...prevData, start_date: `${startDate.date} ${getTime}` }));
+        setFormData(prevData => ({ ...prevData, start_date: `${startDate.date} ${getTime}` }));
     }
 
     const dateFormat = (date: string, type: string = "time"): string => {
