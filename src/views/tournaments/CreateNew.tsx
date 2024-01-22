@@ -54,15 +54,19 @@ export const CreateNew: React.FC = () => {
         race_to: ''
     });
 
+    const validateForm = async (name: string, value: string) => {
+        await schema
+        .validateAt(name, formData)
+        .then(() => setFormErrors({...formErrors, [name]: ''}))
+        .catch((error) => setFormErrors({...formErrors, [name]: error.message }));
+    }
+
     const updateFormData = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
         setFormData({...formData, [name]: value });
 
-        await schema
-            .validateAt(name, formData)
-            .then(() => setFormErrors({...formErrors, [name]: ''}))
-            .catch((error) => setFormErrors({...formErrors, [name]: error.message }));
+        validateForm(name, value);
     }
 
     const updateFormDataTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

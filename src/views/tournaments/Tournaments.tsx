@@ -10,7 +10,7 @@ import { TournamentContext } from "../../components/context/TournamentContext";
 import { TournamentInterface } from "../../interfaces/Tournament";
 import { Finished } from "../../components/tournaments/Finished";
 import { useQuery } from "@apollo/client";
-import { GET_ALL_TOURNAMENTS } from "../../components/gql_queries/players.gql";
+import { GET_ALL_TOURNAMENTS } from "../../components/gql_queries/tournaments.gql"; 
 import { RootState } from "../../app/store";
 
 export const Tournaments = () => {
