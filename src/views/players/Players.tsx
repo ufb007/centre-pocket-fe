@@ -28,7 +28,7 @@ export const Players = () => {
                 <BsSearch className="w-5 h-5 mr-3" />
                 <input type="text" placeholder="SEARCH PLAYERS" name="search_players" className="font-thin w-full rounded-3xl h-8 px-4 py-5 bg-gray-50 text-gray-500 shadow-inner shadow-gray-300"  />
             </div>
-            <div className="players flex flex-row justify-center items-start gap-2 pt-8">
+            <div className="flex pt-8 flex-wrap">
                 {players.map(player => {
                     return <PlayerCard key={player.id} {...player} />
                 })}

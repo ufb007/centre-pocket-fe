@@ -1,7 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import PlayerCard from "../PlayerCard";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 
 const mockPlayer = {
     id: 1,
@@ -16,10 +14,21 @@ const mockPlayer = {
 }
 
 describe('Test Player card data', () => {
-    render(<PlayerCard {...mockPlayer} />);
-    
+    beforeEach(() => {
+        render(<PlayerCard {...mockPlayer} />);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     test('Test name', () => {
         const playerName = screen.getByText(/John Doe/i);
         expect(playerName).toBeInTheDocument();
-    })
+    });
+
+    test('Test profile rank', () => {
+        const playerRank = screen.getByText(/RANK/i);
+        expect(playerRank).toBeInTheDocument();
+    });
 });

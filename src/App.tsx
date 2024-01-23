@@ -12,10 +12,10 @@ import client from './libs/graphql'
 
 function App() {
   return (
-    <>
+    <div className='parent flex-1'>
       <ApolloProvider client={client}>
         <Header />
-        <div className="body flex justify-center bg-gray-200">
+        <div className="child h-full flex justify-center bg-gray-200">
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/tournaments' element={<Tournaments />}>
@@ -29,7 +29,7 @@ function App() {
           </Routes>
         </div>
       </ApolloProvider>
-    </>
+    </div>
   );
 }
 
