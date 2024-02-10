@@ -22,8 +22,8 @@ export const Upcoming = () => {
     return (
         <TournamentCard {...tournamentContext!}>
             <div className="players py-2 px-5 font-thin border-t text-gray-600">
-                <h2 className="font-normal uppercase pb-3">Players Joined - {tournamentContext!.tournament_players.length}/{tournamentContext!.max_players}</h2>
-                { tournamentContext!.tournament_players.length === 0 &&
+                <h2 className="font-normal uppercase pb-3">Players Joined - {tournamentContext?.players.length}/{tournamentContext!.max_players}</h2>
+                { tournamentContext?.players.length === 0 &&
                     <p>There are currently no players joined</p>
                 }
                 <TournamentPlayerProfiles />

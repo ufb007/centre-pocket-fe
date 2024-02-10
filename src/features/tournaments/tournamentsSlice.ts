@@ -1,5 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "../../libs/axios"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { TournamentInterface } from "../../interfaces/Tournament"
 import { RootState } from "../../app/store"
 

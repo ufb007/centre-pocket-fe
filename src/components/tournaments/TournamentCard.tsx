@@ -7,7 +7,7 @@ type Props = {
     children: string | JSX.Element | JSX.Element[] | React.JSX.Element
 }
 
-export const TournamentCard = ({children, id, uuid, name, cover_image, description, game_type, race_to, start_date, tournament_players, max_players, status, type }: TournamentInterface & Props) => {
+export const TournamentCard = ({children, id, uuid, name, cover_image, description, game_type, race_to, start_date, players, max_players, status, match_type }: TournamentInterface & Props) => {
     const tournamentModel = new TournamentModel()
     const navigate = useNavigate()
 
@@ -16,7 +16,7 @@ export const TournamentCard = ({children, id, uuid, name, cover_image, descripti
     const formattedDate = new Intl.DateTimeFormat('us-GB', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
 
     return (
-        <div className="cardTournament w-full shadow-md mb-10" key={id}>
+        <div className="cardTournament w-full shadow-md mb-10" key={uuid}>
             <div className="head py-2 bg-primary-red text-white text-sm font-thin px-5 flex items-center justify-between">
                 <span className="uppercase text-lg">{ name }</span> <span>{ formattedDate }</span>
             </div>
@@ -28,8 +28,8 @@ export const TournamentCard = ({children, id, uuid, name, cover_image, descripti
                     <div className="p-4 font-thin text-gray-600">
                         <p>Game Type: {tournamentModel.getGameType(game_type)}</p>
                         <p>Race to: { race_to }</p>
-                        <p>Joined: {tournament_players.length}/{max_players}</p>
-                        <p>Tournament Type: {tournamentModel.getTournamentType(type)}</p>
+                        <p>Joined: {players.length}/{max_players}</p>
+                        <p>Tournament Type: {tournamentModel.getTournamentType(match_type)}</p>
                         <p className="pb-3">{description}</p>
                     </div>
 

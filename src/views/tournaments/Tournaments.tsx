@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDataSuccess } from "../../features/tournaments/tournamentsSlice"
 import { Menu } from "../../components/tournaments/Menu";
 import { Search } from "../../components/Search";
@@ -21,6 +21,8 @@ export const Tournaments = () => {
 
     let match_status = match?.params.status! as 'upcoming' | 'active' | 'finished';
     let component: ReactElement = <Upcoming />
+
+    console.log(match_status)
 
     const { loading, data } = useQuery(GET_ALL_TOURNAMENTS, {
         variables: { status: match_status }
@@ -52,7 +54,7 @@ export const Tournaments = () => {
             <div className="tournaments flex flex-col justify-center items-start pt-8 mx-3 sm:m-0">
                 { tournaments[match_status]?.map((content: TournamentInterface) => {
                     return (
-                        <TournamentContext.Provider value={content} key={content.id}>
+                        <TournamentContext.Provider value={content} key={content.uuid}>
                             { renderComponent(match_status) }
                         </TournamentContext.Provider>
                     )
