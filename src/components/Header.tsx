@@ -8,17 +8,16 @@ import { CiMenuBurger } from "react-icons/ci";
 
 export const Header = () => {
     const dispatch = useDispatch();
-    const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const navigate = useNavigate()
 
-    const loginLinkClick = () => {
+    const handleLoginLinkClick = () => {
         dispatch(updateLoginActive(true));
     }
     
     useEffect(() => {   
         loginObservable.subscribe((loggedIn: any) => {
-            setLoggedIn(loggedIn);
-            console.log('Log in state has changed to ', loggedIn);
+            setIsLoggedIn(loggedIn);
         })
     }, [loginObservable])
 
@@ -31,7 +30,7 @@ export const Header = () => {
                         {!isLoggedIn ?
                             <ul className="text-secondary flex flex-row justify-end relative overflow-visible">
                                 <li className="relative over overflow-visible">
-                                    <span onClick={loginLinkClick}>Log In</span>
+                                    <span onClick={handleLoginLinkClick}>Log In</span>
                                 </li>
                                 <li className="relative">
                                     <span>Sign Up</span>

@@ -18,20 +18,18 @@ export const Players = () => {
     useEffect(() => {
         if (!loading) {
             console.log(data)
-            setPlayers(data.players)
+            setPlayers(data.players.data)
         }
     }, [loading])
 
     return (
-        <div className="flex flex-col w-[50%]">
+        <div className="flex flex-col w-3/4">
             <div className="search mt-5 flex flex-row items-center">
                 <BsSearch className="w-5 h-5 mr-3" />
                 <input type="text" placeholder="SEARCH PLAYERS" name="search_players" className="font-thin w-full rounded-3xl h-8 px-4 py-5 bg-gray-50 text-gray-500 shadow-inner shadow-gray-300"  />
             </div>
             <div className="flex pt-8 flex-wrap">
-                {players.map(player => {
-                    return <PlayerCard key={player.id} {...player} />
-                })}
+                {players.map(player => (<PlayerCard key={player.id} {...player} />))}
             </div>
         </div>
     )

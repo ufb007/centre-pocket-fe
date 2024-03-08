@@ -2,16 +2,20 @@ import { gql } from "@apollo/client";
 
 export const GET_ALL_PLAYERS = gql`{
     players {
-        id
-        uuid
-        firstName
-        lastName
-        email
-        profile {
+        count
+        data {
             id
-            rank
-            matches_played
-            matches_won
+            uuid
+            firstName
+            lastName
+            email
+            profile {
+                id
+                image
+                rank
+                matches_played
+                matches_won
+            }
         }
     }
 }`;

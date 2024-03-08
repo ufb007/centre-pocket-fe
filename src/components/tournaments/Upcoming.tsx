@@ -26,7 +26,7 @@ export const Upcoming = () => {
                 { tournamentContext?.players.length === 0 &&
                     <p>There are currently no players joined</p>
                 }
-                <TournamentPlayerProfiles />
+                <TournamentPlayerProfiles key={tournamentContext!.id} />
             </div>
             <div className="countdown w-full border-t-[1px] border-gray-200" key={tournamentContext!.id}>
                 <ul className="flex flex-row text-center text-gray-400 uppercase font-thin font-roboto-condensed">

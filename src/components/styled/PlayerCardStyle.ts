@@ -7,7 +7,14 @@ export const Container = tw.div`
     flex 
     mb-8 
     px-2
+    group
 `;
+
+export const Img = tw.img`
+    w-40
+    h-full
+    object-cover
+    `;
 
 export const Rank = tw.div`
     text-white
@@ -21,6 +28,10 @@ export const Rank = tw.div`
     absolute 
     right-5 
     top-[-10px]
+    hover:bg-primary-red
+    group-hover:bg-primary-red
+    transition
+    duration-500
     `;
 
 export const FullName = tw.div`
@@ -62,4 +73,10 @@ export const FollowBtn = tw.div`
     right-0 
     rounded-2xl 
     rounded-r-none
+    hover:bg-primary-yellow
+    hover:text-black
+    group-hover:bg-primary-yellow
+    group-hover:text-black
+    transition
+    duration-500
 `;
