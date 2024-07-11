@@ -22,7 +22,7 @@ export const Tournaments = () => {
     let match_status = match?.params.status! as 'upcoming' | 'active' | 'finished';
     let component: ReactElement = <Upcoming />
 
-    console.log(match_status)
+    //console.log('TOURNAMENTS - ', tournaments)
 
     const { loading, data } = useQuery(GET_ALL_TOURNAMENTS, {
         variables: { status: match_status }

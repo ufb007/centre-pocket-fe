@@ -29,12 +29,12 @@ const tournamentsSlice = createSlice({
         fetchDataStart(state) {
             state.status = 'loading';
         },
-        fetchDataSuccess(state, action: PayloadAction<{ data:  TournamentInterface[], status: 'upcoming' | 'active' | 'finished'}>) {
+        fetchDataSuccess(state, action: PayloadAction<{ data:  {data: TournamentInterface[] }, status: 'upcoming' | 'active' | 'finished'}>) {
             state.status = 'succeeded';
 
             const { data, status } = action.payload;
 
-            state.tournaments[status] = data;
+            state.tournaments[status] = data.data;
         }
     }
 })

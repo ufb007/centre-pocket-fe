@@ -5,9 +5,12 @@ import { TournamentInterface } from "../../interfaces/Tournament"
 export const TournamentPlayerProfiles = () => {
     const tournamentContext = useContext<TournamentInterface | undefined>(TournamentContext)
 
+    console.log('TOURNAMENT PLAYER PROFILES - ', tournamentContext)
+
     return (
         <div className="playerWraper flex flex-row gap-3">
             {tournamentContext!.players.map(({ player: { id, firstName, lastName, profile } }) => {
+                console.log('PLAYER PROFILES - ', profile)
                 return (
                     <div key={id} className="relative w-16 h-16 cursor-pointer group">
                         <img className="rounded-full" src={profile!.image} />
